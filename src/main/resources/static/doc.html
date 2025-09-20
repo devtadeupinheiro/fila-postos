@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação API Fila-Postos</title>
+</head>
+<body>
+    <h2>Registro de Pacientes</h2>
+    <h3>POST</h3>
+    <ul>
+        <li>
+            <p>Atributos:</p>
+            <p>name: Deve conter mais de 3 letras.</p>
+            <p>susNumber: O número do SUS deve conter 15 caracteres numéricos, só pode ser registrado uma paciente por número. Retorna um <strong>409</strong> caso tente registrar outro. Retorna um <strong>400</strong> caso não contenha os 15 caracteres.</p>
+            <p>age: A idade do paciente deve estar entre 0 e 115. Fora desse intervalo retorna um <strong>400</strong>.</p>
+            <p>priorityTypeCode: Código de prioridade do paciente deve ser preenchido somente com número no intervalo de 0 a 8. Segue a especificação de cada código:
+                <ul>
+                    <li>0: SEM PRIORIDADE</li>
+                    <li>1: GESTANTE</li>
+                    <li>2: CRIANCA_COLO</li>
+                    <li>3: LACTANTE</li>
+                    <li>4: AUTISTA</li>
+                    <li>6: DEFICIENTE</li>
+                    <li>7: OBESOS</li>
+                    <li>8: DOADOR_SANGUE</li>
+                    <li>O número 5 será preenchido automaticamente levando em consideração a idade do paciente, configurando-o como IDOSO caso possua 60 anos ou mais.</li>
+                </ul>
+            </p>
+        </li>
+        <li>Retornará <strong>201</strong> em caso que a persistência de dados seja bem sucedida.</li>
+    </ul> 
+</body>
+</html>
