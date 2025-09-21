@@ -4,7 +4,6 @@ import dev.tadeupinheiro.filapostos.dtos.NormalQueueRecordDto;
 import dev.tadeupinheiro.filapostos.entities.NormalQueue;
 import dev.tadeupinheiro.filapostos.services.NormalQueueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +23,7 @@ public class NormalQueueController {
 
     @GetMapping
     public List<NormalQueue> findAllNormalQueue (){
-        return normalQueueService.findAll();
+        return normalQueueService.findAll().stream().map("COLOCAR AQUI LOGICA PARA TRANSFEIR DO NORMAL PARA DTO");
     }
 
 }

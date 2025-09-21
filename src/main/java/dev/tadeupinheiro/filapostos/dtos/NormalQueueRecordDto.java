@@ -3,7 +3,7 @@ package dev.tadeupinheiro.filapostos.dtos;
 import java.time.LocalDate;
 
 public record NormalQueueRecordDto(
-        LocalDate day,
+        String queueDay,
         Long doctorTypeId
 ) {
 }

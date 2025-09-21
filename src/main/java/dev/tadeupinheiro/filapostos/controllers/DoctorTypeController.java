@@ -18,6 +18,7 @@ public class DoctorTypeController {
 
     @PostMapping
     public ResponseEntity<String> saveDoctorType (@RequestBody DoctorType doctorType) {
+        System.out.println(doctorType.toString());
         if (doctorTypeService.existsBySpecialy(doctorType.getSpecialy())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Especialidade já criada");
         }

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class NormalQueueService {
         if (doctorType.isPresent()) {
             var normalQueue = new NormalQueue();
             normalQueue.setDoctorType(doctorType.get());
-            normalQueue.setDay(normalQueueRecordDto.day());
+            normalQueue.setDay(LocalDate.parse(normalQueueRecordDto.queueDay()));
             normalQueueRepository.save(normalQueue);
             return ResponseEntity.status(HttpStatus.CREATED).body("Fila criada com sucesso");
         } else {

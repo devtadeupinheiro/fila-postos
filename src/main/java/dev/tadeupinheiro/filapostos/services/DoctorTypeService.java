@@ -26,7 +26,7 @@ public class DoctorTypeService {
 
     @Transactional(readOnly = true)
     public boolean existsBySpecialy(String specialy) {
-        return existsBySpecialy(specialy);
+        return doctorTypeRepository.findAll().stream().map(doctorType -> doctorType.getSpecialy().equalsIgnoreCase(specialy)).findAny().isPresent();
     }
 
 }
