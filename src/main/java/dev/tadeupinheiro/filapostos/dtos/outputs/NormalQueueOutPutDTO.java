@@ -1,18 +1,26 @@
 package dev.tadeupinheiro.filapostos.dtos.outputs;
 
+import dev.tadeupinheiro.filapostos.entities.DoctorType;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class NormalQueueOutPutDTO {
 
-    private LocalDate queueDay;
+    private String queueDay;
     private String specialy;
 
-    public LocalDate getQueueDay() {
+    public NormalQueueOutPutDTO(LocalDate queueDay, DoctorType specialy) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.queueDay = queueDay.format(formatter);
+        this.specialy = specialy.getSpecialy();
+    }
+
+    public String getQueueDay() {
         return queueDay;
     }
 
-    public void setQueueDay(LocalDate queueDay) {
+    public void setQueueDay(String queueDay) {
         this.queueDay = queueDay;
     }
 
@@ -24,9 +32,7 @@ public class NormalQueueOutPutDTO {
         this.specialy = specialy;
     }
 
-    @Override
     public String toString() {
-        String date = queueDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        return "Fila: " + specialy + " Dia: " + date;
+        return "Especialidade: " + specialy + " Dia: " + queueDay;
     }
 }

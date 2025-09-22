@@ -32,4 +32,5 @@ public class DoctorType {
     public void setSpecialy(String specialy) {
         this.specialy = specialy;
     }
+
 }
