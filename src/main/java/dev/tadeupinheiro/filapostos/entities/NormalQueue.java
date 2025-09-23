@@ -44,4 +44,13 @@ public class NormalQueue {
     public void setDoctorType(DoctorType doctorType) {
         this.doctorType = doctorType;
     }
+
+    @Override
+    public String toString() {
+        return "NormalQueue{" +
+                "id=" + id +
+                ", day=" + day +
+                ", doctorType=" + doctorType +
+                '}';
+    }
 }

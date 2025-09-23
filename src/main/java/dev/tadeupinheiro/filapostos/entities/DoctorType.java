@@ -33,4 +33,8 @@ public class DoctorType {
         this.specialy = specialy;
     }
 
+    @Override
+    public String toString() {
+        return this.specialy;
+    }
 }

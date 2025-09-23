@@ -29,4 +29,9 @@ public class PatientService {
         return patientRepository.existsBySusNumber(susNumber);
     }
 
+    @Transactional(readOnly = true)
+    public Patient findBySusNumber(String susNumber) {
+        return patientRepository.findBySusNumber(susNumber).orElse(null);
+    }
+
 }

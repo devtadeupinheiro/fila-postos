@@ -5,7 +5,6 @@ import dev.tadeupinheiro.filapostos.entities.DoctorType;
 import dev.tadeupinheiro.filapostos.entities.NormalQueue;
 import dev.tadeupinheiro.filapostos.repositories.DoctorTypeRepository;
 import dev.tadeupinheiro.filapostos.repositories.NormalQueueRepository;
-import jakarta.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +38,7 @@ public class NormalQueueService {
         }
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<NormalQueue> findAll() {
         return normalQueueRepository.findAll();
     }

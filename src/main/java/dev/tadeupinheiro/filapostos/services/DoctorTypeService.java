@@ -29,4 +29,10 @@ public class DoctorTypeService {
         return doctorTypeRepository.findAll().stream().map(doctorType -> doctorType.getSpecialy().equalsIgnoreCase(specialy)).findAny().isPresent();
     }
 
+    @Transactional
+    public DoctorType findBySpecialy(String specialy) {
+        return doctorTypeRepository.findDoctorTypeBySpecialy(specialy).orElse(null);
+    }
+
+
 }

@@ -41,8 +41,9 @@ public class PatientController {
             patient.setPriorityType(PriorityTypeEnum.IDOSO.toString());
         }
 
-        if (patientRecordDto.priorityTypeCode() > 0 && patientRecordDto.priorityTypeCode() <= 8 && patientRecordDto.priorityTypeCode() != 5) {
+        if (patientRecordDto.priorityTypeCode() <= 8 && patientRecordDto.priorityTypeCode() != 5) {
             switch (patientRecordDto.priorityTypeCode()) {
+                case 0: patient.setPriorityType((PriorityTypeEnum.NORMAL.toString())); break;
                 case 1: patient.setPriorityType(PriorityTypeEnum.GESTANTE.toString()); break;
                 case 2: patient.setPriorityType(PriorityTypeEnum.CRIANCA_COLO.toString()); break;
                 case 3: patient.setPriorityType(PriorityTypeEnum.LACTANTE.toString()); break;
