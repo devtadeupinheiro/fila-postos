@@ -51,12 +51,18 @@ public class QueueController {
         if (patient.getPriorityType().equalsIgnoreCase("NORMAL")) {
             List<NormalQueue> normalQueueList = normalQueueService.findAll();
             DoctorType finalSpecialy = specialy;
-            Optional<NormalQueue> list = normalQueueList.stream().filter(l -> l.getDoctorType().getSpecialy().equalsIgnoreCase(finalSpecialy.getSpecialy())).findFirst();
+            String sp = queueRecordDTO.specialy();
+            Optional<NormalQueue> list = normalQueueList.stream().filter(l -> l.getDoctorType().getSpecialy().equalsIgnoreCase(sp)).findFirst();
             if (list.isPresent()){
                 List<NormalQueuePatient> normalQueuePatientList = normalQueuePatientService.findAllNormalQueuePatient();
                 quantityPatientBySpecialy = normalQueuePatientList.stream().filter(l -> l.getId().getNormalQueue().getDoctorType() == finalSpecialy).count();
+                System.out.println(quantityPatientBySpecialy);
                 quantityPatientBySpecialy += 1;
                 var normalQueuePatientRecordDto = new NormalQueuePatientRecordDTO(list.get().getId(), patient.getId(), Integer.valueOf(String.valueOf(quantityPatientBySpecialy)));
+                normalQueuePatientService.saveNormalQueuePatient(normalQueuePatientRecordDto);
+                /*
+                a fila não tá saindo de 1. Não tá persistindo mais de uma vez. Coloca uma forma de retornar que o paciente já está na fila
+                 */
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fila de pacientes não prioritários para a especialidade " + queueRecordDTO.specialy().toUpperCase() + " não encontrada");
             }
