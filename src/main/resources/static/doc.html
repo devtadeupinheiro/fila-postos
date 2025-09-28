@@ -6,7 +6,8 @@
     <title>Documentação API Fila-Postos</title>
 </head>
 <body>
-    <h2>Registro de Pacientes</h2>
+    <h2>Pacientes</h2>
+    <h3>Endpoint: /register</h3>
     <h3>POST</h3>
     <ul>
         <li>
@@ -27,8 +28,18 @@
                     <li>O número 5 será preenchido automaticamente levando em consideração a idade do paciente, configurando-o como IDOSO caso possua 60 anos ou mais.</li>
                 </ul>
             </p>
+            <p><img src="/static/images/save-patient.png" alt="save-patient"></p>
         </li>
         <li>Retornará <strong>201</strong> em caso que a persistência de dados seja bem sucedida.</li>
-    </ul> 
+    </ul>
+    
+    <h3>GET</h3>
+    <h4>GET BY susNumber</h4>
+    <h4>Endpoint: /register/{susNumber}</h4>
+    <p><img src="images/save-patient-endpoint.png" alt="save-patient-endpoint"></p>
+    <p>No caso de não ser bem sucedido irá retornar <strong>404</strong>.</p>
+    <p>Se o paciente for encontrado, retornará um <strong>302</strong>.</p>
+    <p><img src="images/save-patient-return-status-found.png" alt="save-patient-return-status-found" ></p>
+
 </body>
 </html>

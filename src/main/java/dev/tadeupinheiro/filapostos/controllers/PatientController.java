@@ -1,6 +1,7 @@
 package dev.tadeupinheiro.filapostos.controllers;
 
 import dev.tadeupinheiro.filapostos.dtos.PatientRecordDto;
+import dev.tadeupinheiro.filapostos.dtos.outputs.PatientOutPutDTO;
 import dev.tadeupinheiro.filapostos.entities.Patient;
 import dev.tadeupinheiro.filapostos.entities.PriorityTypeEnum;
 import org.springframework.beans.BeanUtils;
@@ -63,6 +64,17 @@ public class PatientController {
     @GetMapping
     public List<Patient> findAllPatients (){
         return patientService.findAll();
+    }
+
+    @GetMapping("/{susNumber}")
+    public ResponseEntity<PatientOutPutDTO> findPatientBySusNumber (@PathVariable String susNumber) {
+        var patient = patientService.findBySusNumber(susNumber);
+        if (patient == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        var patientOutput = new PatientOutPutDTO();
+        BeanUtils.copyProperties(patient, patientOutput);
+        return ResponseEntity.status(HttpStatus.FOUND).body(patientOutput);
     }
 
 }
