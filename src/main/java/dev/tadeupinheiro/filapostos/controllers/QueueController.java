@@ -71,7 +71,4 @@ public class QueueController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Paciente registrado com sucesso. Sua posição na fila é: " + quantityPatientBySpecialy);
     }
 
-    @GetMapping
-    public ResponseEntity<List<NormalQueuePatient>> findAllNormalQueuePatient() {}
-
 }
