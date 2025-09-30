@@ -16,10 +16,11 @@ public class NormalQueue {
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private DoctorType doctorType;
+    private Integer quantityVacancies;
 
     public NormalQueue() {}
 
-    public NormalQueue(LocalDate day, DoctorType doctorType) {}
+    public NormalQueue(LocalDate day, DoctorType doctorType, Integer quantityVacancies) {}
 
     public Long getId() {
         return id;
@@ -45,12 +46,21 @@ public class NormalQueue {
         this.doctorType = doctorType;
     }
 
+    public Integer getQuantityVacancies() {
+        return quantityVacancies;
+    }
+
+    public void setQuantityVacancies(Integer quantityVacancies) {
+        this.quantityVacancies = quantityVacancies;
+    }
+
     @Override
     public String toString() {
         return "NormalQueue{" +
                 "id=" + id +
                 ", day=" + day +
                 ", doctorType=" + doctorType +
+                ", quantityVacancies=" + quantityVacancies +
                 '}';
     }
 }

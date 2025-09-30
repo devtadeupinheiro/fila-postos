@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public record NormalQueueRecordDto(
         String queueDay,
-        Long doctorTypeId
+        Long doctorTypeId,
+        Integer quantityVacancies
 ) {
 }

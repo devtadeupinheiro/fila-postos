@@ -31,6 +31,7 @@ public class NormalQueueService {
             var normalQueue = new NormalQueue();
             normalQueue.setDoctorType(doctorType.get());
             normalQueue.setDay(LocalDate.parse(normalQueueRecordDto.queueDay()));
+            normalQueue.setQuantityVacancies(normalQueueRecordDto.quantityVacancies());
             normalQueueRepository.save(normalQueue);
             return ResponseEntity.status(HttpStatus.CREATED).body("Fila criada com sucesso");
         } else {
