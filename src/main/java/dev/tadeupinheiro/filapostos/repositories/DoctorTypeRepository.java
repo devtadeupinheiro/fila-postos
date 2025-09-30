@@ -11,6 +11,6 @@ public interface DoctorTypeRepository extends JpaRepository<DoctorType, Long> {
 
     public boolean existsDoctorTypeBySpecialy(String specialy);
 
-    public Optional<DoctorType> findDoctorTypeBySpecialy(String specialy);
+    public Optional<DoctorType> findDoctorTypeBySpecialyEqualsIgnoreCase(String specialy);
 
 }

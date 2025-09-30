@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação API Fila-Postos</title>
+</head>
+<body>
+    <h1>Especialidades</h1>
+    <h3>Endpoint: /specialy</h3>
+    <h2>POST</h2>
+    <ul>
+        <li>
+            <p>Atributos:</p>
+            <p>specialy: String. Não permite criar especialidades identicas. Retorna <strong>201</strong> se a especialidade for salva com sucesso e <strong>409</strong> caso já exista.</p>
+            <p><img src="/static/images/save-doctor-type-return-status-conflict.png" alt="save-doctor-type-return-status-conflict"></p>
+            <p><img src="images/save-doctor-type-return-status-created.png" alt="save-doctor-type-return-status-created]"></p>
+        </li>
+        <li>Retornará <strong>201</strong> em caso que a persistência de dados seja bem sucedida.</li>
+    </ul>
+    
+    <h2>GET</h2>
+    <h4>GET BY specialy</h4>
+    <h4>Endpoint: /specialy/{specialy}</h4>
+    <p><img src="images/get-specialy-endpoint.png" alt="get-specialy-endpoint"></p>
+    <p>No caso de não ser bem sucedido irá retornar <strong>404</strong>.</p>
+    <p><img src="images/get-specialy-return-not-found.png" alt="get-specialy-return-not-found"></p>
+    <p>Se o paciente for encontrado, retornará um <strong>302</strong>.</p>
+    <p><img src="images/get-specialy-return-found.png" alt="get-specialy-return-found"></p>
+
+    <h2>DELETE</h2>
+    <h4>DELETE BT specialy</h4>
+    <h4>Endpoint: /specialy/{specialy}</h4>
+    <p><img src="images/delete-specialy-endpoint.png" alt="delete-specialy-endpoint"></p>
+    <p>Se deletado, retorna <strong>200</strong>.</p>
+    <p><img src="images/delete-specialy-return-ok.png" alt="delete-specialy-return-ok"></p>
+    <p>Se não for encontrado a especialidade, retorna <strong>404</strong>.</p>
+    <p><img src="images/delete-specialy-return-not-found.png" alt="delete-specialy-return-not-found"></p>
+
+</body>
+</html>
