@@ -9,14 +9,7 @@ export function Input({ label, ...rest }: InputProps) {
   return (
     <Field>
       <Label htmlFor="specialty">{label}</Label>
-      <InputContainer
-        {...rest}
-        // id="specialty"
-        // placeholder="Ex.: Dentista"
-        // value={specialty}
-        // onChange={(e) => setSpecialty(e.target.value)}
-        // disabled={submitting}
-      />
+      <InputContainer {...rest} />
       <Hint>Use nomes consistentes (ex.: “Dentista”, “Cardiologista”)</Hint>
     </Field>
   );
