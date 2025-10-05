@@ -1,6 +1,5 @@
-// src/pages/SpecialyPage.jsx
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+
 import {
   getSpecialties,
   createSpecialty,
@@ -13,18 +12,15 @@ import {
   Button,
   Card,
   Empty,
-  Field,
   Form,
   Header,
-  Hint,
-  Input,
-  Label,
   List,
   ListItem,
   Page,
   Subtitle,
   Title,
 } from "./styles";
+import { Input } from "../../components/Input";
 
 const SpecialyPage = () => {
   const [items, setItems] = useState<Specialty | null>(null);
@@ -86,19 +82,14 @@ const SpecialyPage = () => {
         </Header>
 
         <Form onSubmit={onSubmit}>
-          <Field>
-            <Label htmlFor="specialty">Nome da especialidade</Label>
-            <Input
-              id="specialty"
-              placeholder="Ex.: Dentista"
-              value={specialty}
-              onChange={(e) => setSpecialty(e.target.value)}
-              disabled={submitting}
-            />
-            <Hint>
-              Use nomes consistentes (ex.: “Dentista”, “Cardiologista”)
-            </Hint>
-          </Field>
+          <Input
+            id="specialty"
+            placeholder="Ex.: Dentista"
+            value={specialty}
+            onChange={(e) => setSpecialty(e.target.value)}
+            disabled={submitting}
+            label="Especialidade"
+          />
 
           <Actions>
             <Button type="submit" disabled={submitting}>
