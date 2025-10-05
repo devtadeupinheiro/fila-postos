@@ -1,6 +1,6 @@
 import React from "react";
-import SpecialyPage from "./pages/SpecialyPage";
-import Navbar from "./components/NaviBar";
+import SpecialyPage from "./pages/Specialty";
+import Navbar from "./components/Navbar";
 
 import { Routes, Route } from "react-router-dom";
 
