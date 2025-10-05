@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class DoctorTypeService {
@@ -26,10 +27,15 @@ public class DoctorTypeService {
         return doctorTypeRepository.findAll();
     }
 
+    // @Transactional(readOnly = true)
+    // public boolean existsBySpecialy(String specialy) {
+    //     return doctorTypeRepository.findAll().stream().map(doctorType -> doctorType.getSpecialy().equalsIgnoreCase(specialy)).findAny().isPresent();
+    // }
+
     @Transactional(readOnly = true)
-    public boolean existsBySpecialy(String specialy) {
-        return doctorTypeRepository.findAll().stream().map(doctorType -> doctorType.getSpecialy().equalsIgnoreCase(specialy)).findAny().isPresent();
-    }
+public boolean existsBySpecialy(String name) {
+  return name != null && doctorTypeRepository.existsDoctorTypeBySpecialy(name);
+}
 
     @Transactional
     public DoctorType findBySpecialy(String specialy) {
