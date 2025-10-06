@@ -34,7 +34,7 @@ public class DoctorTypeService {
 
     @Transactional(readOnly = true)
 public boolean existsBySpecialy(String name) {
-  return name != null && doctorTypeRepository.existsDoctorTypeBySpecialy(name);
+  return name != null && doctorTypeRepository.existsDoctorTypeBySpecialyEqualsIgnoreCase(name);
 }
 
     @Transactional

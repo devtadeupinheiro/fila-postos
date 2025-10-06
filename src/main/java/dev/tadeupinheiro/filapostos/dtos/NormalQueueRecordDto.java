@@ -1,10 +1,13 @@
 package dev.tadeupinheiro.filapostos.dtos;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public record NormalQueueRecordDto(
-        String queueDay,
-        Long doctorTypeId,
-        Integer quantityVacancies
+        @NotBlank String queueDay,
+        @NotNull Long doctorTypeId,
+        @NotNull Integer quantityVacancies
 ) {
 }
