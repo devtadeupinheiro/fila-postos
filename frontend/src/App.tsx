@@ -1,5 +1,6 @@
 import React from "react";
 import SpecialyPage from "./pages/Specialty";
+import Home from "./pages/Home"; // 👈 NOVO: importação da tela inicial
 import Navbar from "./components/Navbar";
 
 import { Routes, Route } from "react-router-dom";
@@ -16,7 +17,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<SpecialyPage />} />
+        <Route path="/" element={<Home />} />
 
         {/* <Route path="/sobre" element={<About />} /> */}
 
