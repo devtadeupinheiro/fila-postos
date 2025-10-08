@@ -12,4 +12,6 @@ public interface NormalQueueRepository extends JpaRepository<NormalQueue, Long> 
 
     Optional<NormalQueue> findNormalQueueByDoctorType (DoctorType doctorType);
 
+    Optional<NormalQueue> findNormalQueueById(Long id);
+
 }

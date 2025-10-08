@@ -42,4 +42,6 @@ public class NormalQueuePatientService {
         return normalQueuePatientRepository.findAll();
     }
 
+
+
 }

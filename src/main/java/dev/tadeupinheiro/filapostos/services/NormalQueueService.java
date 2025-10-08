@@ -49,6 +49,11 @@ public class NormalQueueService {
         return normalQueueRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
+    public NormalQueue findNormalQueueById(Long id) {
+        return normalQueueRepository.findById(id).orElse(null);
+    }
+
     @Transactional
     public boolean deleteNormalQueue(Long id) {
         if(normalQueueRepository.existsById(id)){
