@@ -1,6 +1,7 @@
 import React from "react";
 import SpecialyPage from "./pages/Specialty";
 import Home from "./pages/Home"; // 👈 NOVO: importação da tela inicial
+import Patient from "./pages/Patient"; // 👈 Tela "Sou Paciente"
 import Navbar from "./components/Navbar";
 
 import { Routes, Route } from "react-router-dom";
@@ -18,6 +19,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/patient" element={<Patient />} /> {/* 👈 NOVO: rota da tela "Sou Paciente" */}
 
         {/* <Route path="/sobre" element={<About />} /> */}
 
