@@ -42,6 +42,12 @@ public class NormalQueuePatientService {
         return normalQueuePatientRepository.findAll();
     }
 
+    @Transactional
+    public void updateQueueBecausePriority (List<NormalQueuePatient> normalQueuePatientList, int initialIndex) {
 
+        for (int i = initialIndex; i < normalQueuePatientList.size(); i++) {
+            normalQueuePatientRepository.updateNormalQueuePatientPosition(normalQueuePatientList.get(i).getId().getNormalQueue().getId(), normalQueuePatientList.get(i).getId().getPatient().getId(), i+1);
+        }
+    }
 
 }
