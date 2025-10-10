@@ -15,7 +15,7 @@ function Home() {
 
       <Title>Bem-vindo ao Fila Postos</Title>
       <ButtonGroup>
-        <Button onClick={() => navigate("/servidor")}>SOU SERVIDOR</Button>
+        <Button onClick={() => navigate("/specialty")}>SOU SERVIDOR</Button>
         <Button onClick={() => navigate("/patient")}>SOU PACIENTE</Button>
       </ButtonGroup>
     </Container>

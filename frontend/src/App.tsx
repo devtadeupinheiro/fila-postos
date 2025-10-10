@@ -1,5 +1,5 @@
 import React from "react";
-import SpecialyPage from "./pages/Specialty";
+import SpecialtyPage from "./pages/Specialty";
 import Home from "./pages/Home"; // 👈 NOVO: importação da tela inicial
 import Patient from "./pages/Patient"; // 👈 Tela "Sou Paciente"
 import SelectQueue from "./pages/Patient/SelectQueue"; // 👈 Tela "Escolher Fila"
@@ -20,6 +20,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/specialty" element={<SpecialtyPage />} />
         <Route path="/patient" element={<Patient />} /> {/* 👈 NOVO: rota da tela "Sou Paciente" */}
         <Route path="/patient/select-queue" element={<SelectQueue />} /> {/* 👈 NOVO: rota da tela "Escolher Fila" */}
 
