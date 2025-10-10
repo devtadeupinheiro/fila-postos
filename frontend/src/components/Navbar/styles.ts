@@ -7,11 +7,19 @@ export const NavBarContainer = styled.nav`
   align-items: center;
   gap: 10rem;
   width: 100%;
-  background-color: #49748cff;
+  background-color: white;
   height: 3rem;
+  border-bottom: 1px solid #ddd;
 `;
 
 export const LinkNavbar = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: #007bff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #0056b3;
+  }
 `;
+
