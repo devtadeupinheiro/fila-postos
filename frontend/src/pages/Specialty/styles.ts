@@ -45,7 +45,7 @@ export const Actions = styled.div`
 export const Button = styled.button`
   height: 42px;
   padding: 0 16px;
-  background: #6366f1;
+  background: #007bff;
   color: #fff;
   border: 0;
   border-radius: 10px;
@@ -54,7 +54,7 @@ export const Button = styled.button`
   transition: transform 0.06s ease, filter 0.15s ease;
 
   &:hover {
-    filter: brightness(1.05);
+    background: #0056b3;
   }
   &:active {
     transform: translateY(1px);
