@@ -13,7 +13,7 @@ export default function Patient() {
           Cadastrar
         </OptionButton>
 
-        <OptionButton onClick={() => navigate('/patient/escolher-fila')}>
+        <OptionButton onClick={() => navigate('/patient/select-queue')}>
           Escolher Fila
         </OptionButton>
       </ButtonGroup>
