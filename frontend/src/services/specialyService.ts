@@ -1,13 +1,12 @@
 import { api } from "./api";
 import type { AxiosError } from "axios";
 
-export type Specialty = { id: string; specialty: string };
+export type Specialty = { id: string; specialy: string };
 
-export async function getSpecialties(kind = "dentista"): Promise<Specialty> {
+export async function getSpecialties(): Promise<Specialty[]> {
   try {
-    const { data } = await api.get<Specialty>(
-      `/specialy/${encodeURIComponent(kind)}`
-    );
+    const { data } = await api.get<Specialty[]>("/specialy");
+
     return data;
   } catch (err) {
     const e = err as AxiosError;
