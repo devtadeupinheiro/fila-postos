@@ -92,10 +92,8 @@ const QueuePage = () => {
     <Page>
       <Card>
         <Header>
-          <Title>Cadastro de Especialidade</Title>
-          <Subtitle>
-            Crie uma nova especialidade e visualize as existentes
-          </Subtitle>
+          <Title>Cadastro de Filas</Title>
+          <Subtitle>Crie uma nova fila e visualize as existentes</Subtitle>
         </Header>
 
         <Form onSubmit={onSubmit}>
