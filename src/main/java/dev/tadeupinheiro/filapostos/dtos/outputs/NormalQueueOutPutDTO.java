@@ -7,13 +7,25 @@ import java.time.format.DateTimeFormatter;
 
 public class NormalQueueOutPutDTO {
 
+    private Long id;
     private String queueDay;
     private String specialy;
+    private Integer quantityVacancies;
 
-    public NormalQueueOutPutDTO(LocalDate queueDay, DoctorType specialy) {
+    public NormalQueueOutPutDTO(Long id, LocalDate queueDay, DoctorType specialy, Integer quantityVacancies) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.id = id;
         this.queueDay = queueDay.format(formatter);
         this.specialy = specialy.getSpecialy();
+        this.quantityVacancies = quantityVacancies;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getQueueDay() {
@@ -30,6 +42,14 @@ public class NormalQueueOutPutDTO {
 
     public void setSpecialy(String specialy) {
         this.specialy = specialy;
+    }
+
+    public Integer getQuantityVacancies() {
+        return quantityVacancies;
+    }
+
+    public void setQuantityVacancies(Integer quantityVacancies) {
+        this.quantityVacancies = quantityVacancies;
     }
 
     public String toString() {

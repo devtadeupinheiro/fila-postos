@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "normal_queue_patient")
+@Table(name = "tb_normal_queue_patient")
 public class NormalQueuePatient {
 
     @EmbeddedId

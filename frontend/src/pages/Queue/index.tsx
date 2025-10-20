@@ -21,10 +21,18 @@ import {
   Title,
 } from "./styles";
 import { Input } from "../../components/Input";
+import {
+  createQueue,
+  GetQueue,
+  getQueues,
+  Queue,
+} from "../../services/queueService";
 
-const SpecialyPage = () => {
-  const [items, setItems] = useState<Specialty[]>([]);
-  const [specialty, setSpecialty] = useState("");
+const QueuePage = () => {
+  const [items, setItems] = useState<GetQueue[]>([]);
+  const [queueDay, setQueueDay] = useState("");
+  const [doctorTypeId, setDoctorTypeId] = useState("");
+  const [quantityVacancies, setQuantityVacancies] = useState<number>();
   const [loadingList, setLoadingList] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -34,7 +42,7 @@ const SpecialyPage = () => {
     setLoadingList(true);
     setErrorMsg("");
     try {
-      const data = await getSpecialties();
+      const data = await getQueues();
 
       setItems(data);
     } catch (e) {
@@ -53,17 +61,23 @@ const SpecialyPage = () => {
     setErrorMsg("");
     setSuccessMsg("");
 
-    const value = specialty.trim();
-    if (!value) {
+    const valueQueueDay = queueDay.trim();
+    const valueDoctorTypeId = doctorTypeId.trim();
+    if (!valueQueueDay || !valueDoctorTypeId || !quantityVacancies) {
       setErrorMsg("Digite o nome da especialidade.");
       return;
     }
-    console.log(value);
     setSubmitting(true);
     try {
-      await createSpecialty(value);
+      await createQueue({
+        queueDay: valueQueueDay,
+        doctorTypeId: valueDoctorTypeId,
+        quantityVacancies: quantityVacancies,
+      });
       setSuccessMsg("Especialidade criada com sucesso!");
-      setSpecialty("");
+      setQueueDay("");
+      setDoctorTypeId("");
+      setQuantityVacancies(0);
       await loadList();
     } catch (e) {
       setErrorMsg("Falha ao criar a especialidade.");
@@ -78,20 +92,34 @@ const SpecialyPage = () => {
     <Page>
       <Card>
         <Header>
-          <Title>Cadastro de Especialidade</Title>
-          <Subtitle>
-            Crie uma nova especialidade e visualize as existentes
-          </Subtitle>
+          <Title>Cadastro de Filas</Title>
+          <Subtitle>Crie uma nova fila e visualize as existentes</Subtitle>
         </Header>
 
         <Form onSubmit={onSubmit}>
           <Input
-            id="specialty"
-            placeholder="Ex.: Dentista"
-            value={specialty}
-            onChange={(e) => setSpecialty(e.target.value)}
+            id="queueDay"
+            placeholder="Ex.: 2025-10-13"
+            value={queueDay}
+            onChange={(e) => setQueueDay(e.target.value)}
             disabled={submitting}
-            label="Especialidade"
+            label="Dia"
+          />
+          <Input
+            id="doctorTypeId"
+            placeholder="Ex.: 1"
+            value={doctorTypeId}
+            onChange={(e) => setDoctorTypeId(e.target.value)}
+            disabled={submitting}
+            label="Id da Especialidade"
+          />
+          <Input
+            id="quantityVacancies"
+            placeholder="Ex.: 20"
+            value={quantityVacancies}
+            onChange={(e) => setQuantityVacancies(Number(e.target.value))}
+            disabled={submitting}
+            label="Quantidade"
           />
 
           <Actions>
@@ -115,18 +143,22 @@ const SpecialyPage = () => {
 
       <Card>
         <Header>
-          <Title>Especialidades cadastradas</Title>
+          <Title>Filas cadastradas</Title>
         </Header>
 
         {loadingList ? (
           <Empty>Carregando...</Empty>
         ) : items.length === 0 ? (
-          <Empty>Nenhuma especialidade encontrada.</Empty>
+          <Empty>Nenhuma fila encontrada.</Empty>
         ) : (
           <List>
             {items.map((it) => (
-              <ListItem key={it.id ?? it.specialy}>
-                <Badge>{it.specialy ?? String(it)}</Badge>
+              <ListItem key={it.id}>
+                <Badge>
+                  <strong>Especialidade:</strong> {it.specialy ?? String(it)}{" "}
+                  <strong>Vagas:</strong> {it.quantityVacancies}{" "}
+                  <strong>Dia:</strong> {it.queueDay}
+                </Badge>
               </ListItem>
             ))}
           </List>
@@ -136,4 +168,4 @@ const SpecialyPage = () => {
   );
 };
 
-export default SpecialyPage;
+export default QueuePage;

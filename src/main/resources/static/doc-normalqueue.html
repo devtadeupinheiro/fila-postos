@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação API Fila-Postos</title>
+</head>
+<body>
+    <h1>Criação de Fila</h1>
+    <h3>Endpoint: /normalQueue</h3>
+    <h2>POST</h2>
+    <p><img src="images/post-normalqueue-endpoint.png" alt="post-normalqueue-endpoint"></p>
+    <ul>
+        <li>
+            <p>Atributos:</p>
+            <p>queueDay: String. Data no formato yyyy-mm-dd.
+            <p>doctorTypeId: Um número tipo inteiro que deverá corresponder ao id da especialidade criada existente.</p>
+            <p>quantityVacancies: Um número inteiro que representará a quantidade de vagas ofertadas.</p>
+        </li>
+        <li>
+            <p>Retornará <strong>201</strong> em caso que a persistência de dados seja bem sucedida.</p>
+            <p><img src="/images/save-normalqueue-return-status-created.png" alt="save-normalqueue-return-status-created"></p>
+        </li>
+        <li><p>No caso de tentar criar a fila na mesma especialidade para a mesma data, retornará o <strong>409</strong>.</p>
+            <p><img src="images/save-normalqueue-return-conflict.png" alt="save-normalqueue-return-conflict"></p>
+        </li>
+    </ul>
+    
+    <h2>GET</h2>
+    <h4>GET ALL</h4>
+    <h4>Endpoint: /normalQueue</h4>
+    <p><img src="images/get-normalqueue-endpoint.png" alt=""></p>
+    <p><img src="images/get-all-normalqueue.png" alt="get-all-normalqueue"></p>
+    <p>Retornará a lista de filas e o código <strong>200</strong>.</p>
+
+    <h2>DELETE</h2>
+    <h4>DELETE BY ID</h4>
+    <h4>Endpoint: /normalQueue/{id}</h4>
+    <p><img src="images/delete-normalqueue-endpoint.png" alt="delete-normalqueue-endpoint"></p>
+    <p>Se deletado, retorna <strong>200</strong>.</p>
+    <p><img src="images/delete-normalqueue-return-ok.png" alt="delete-normalqueue-return-ok"></p>
+    <p>Se não for encontrado a fila e/ou tentar excluir novamente, retorna <strong>404</strong>.</p>
+    <p><img src="images/delete-normalqueue-return-not-found.png" alt="delete-normalqueue-return-not-found"></p>
+
+</body>
+</html>

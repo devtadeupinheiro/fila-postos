@@ -7,6 +7,8 @@ import SpecialyForm from "./components/Input/SpecialyForm"; // 👈 Importa o fo
 import Navbar from "./components/Navbar";
 
 import { Routes, Route } from "react-router-dom";
+import Admin from "./pages/Admin";
+import QueuePage from "./pages/Queue";
 
 // Importe seus componentes de página
 // import Home from './pages/Home';
@@ -21,14 +23,15 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/specialty" element={<SpecialtyPage />} />
-        <Route path="/patient" element={<Patient />} /> {/* 👈 NOVO: rota da tela "Sou Paciente" */}
-        <Route path="/patient/select-queue" element={<SelectQueue />} /> {/* 👈 NOVO: rota da tela "Escolher Fila" */}
-        <Route path="/patient/cadastrar" element={<SpecialyForm />} /> {/* 👈 NOVO: rota para cadastro de paciente */}
+        <Route path="/queue" element={<QueuePage />} />
+        <Route path="/patient" element={<Patient />} />
+        {/* 👈 NOVO: rota da tela "Sou Paciente" */}
+        <Route path="/patient/select-queue" element={<SelectQueue />} />
+        {/* 👈 NOVO: rota da tela "Escolher Fila" */}
         {/* <Route path="/sobre" element={<About />} /> */}
-
         {/* <Route path="/contato" element={<Contact />} /> */}
-
         {/* Rota 404 (catch-all). Renderiza se nenhuma rota acima for encontrada */}
         <Route path="*" element={<h1>Página Não Encontrada</h1>} />
       </Routes>
