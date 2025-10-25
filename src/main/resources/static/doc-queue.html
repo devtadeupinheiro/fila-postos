@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação API Fila-Postos</title>
+</head>
+<body>
+    <h1>Inserção de Pacientes nas Filas</h1>
+    <h3>Endpoint: /schedule-appointment</h3>
+    <h2>POST</h2>
+    <p><img src="images/post-queue-endpoint.png" alt="post-queue-endpoint"></p>
+    <ul>
+        <li>
+            <p>Atributos:</p>
+            <p>idQueue: Número do tipo Long correspondente ao ID da fila que será inserido o paciente.
+            <p>patientSusNumber: String com 15 caracteres correspondente ao Número do Sus do Paciente cadastrado.</p>
+        </li>
+        <li>
+            <p>Retornará <strong>201</strong> em caso que o paciente consiga entrar na fila.</p>
+            <p><strong>RETORNA A POSIÇÃO DO PACIENTE NA FILA, CONTUDO, A POSIÇÃO MUDA DINAMICAMENTE EM CASO DE ALGUMA PRIORIDADE ENTRAR NA FILA E OCUPAR UMA POSIÇÃO A FRENTE DO PACIENTE. É INTERESSANTE COLOCAR UMA CHAMADA DE CONSULTA DA POSIÇÃO DO PACIENTE SEMPRE QUE ELE ABRIR A TELA.</strong></p>
+            <p><img src="/images/save-queue-return-status-created" alt="save-queue-return-status-created"></p>
+        </li>
+        <li><p>Caso não tenha mais vaga na fila, retornará <strong>200</strong>.</p>
+            <p><img src="images/save-queue.png" alt="save-queue"></p>
+        </li>
+    </ul>
+    
+</body>
+</html>
