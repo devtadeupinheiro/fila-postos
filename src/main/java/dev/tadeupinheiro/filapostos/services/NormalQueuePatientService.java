@@ -1,7 +1,6 @@
 package dev.tadeupinheiro.filapostos.services;
 
 import dev.tadeupinheiro.filapostos.dtos.NormalQueuePatientRecordDTO;
-import dev.tadeupinheiro.filapostos.entities.NormalQueue;
 import dev.tadeupinheiro.filapostos.entities.NormalQueuePatient;
 import dev.tadeupinheiro.filapostos.repositories.NormalQueuePatientRepository;
 import dev.tadeupinheiro.filapostos.repositories.NormalQueueRepository;
@@ -45,8 +44,14 @@ public class NormalQueuePatientService {
     @Transactional
     public void updateQueueBecausePriority (List<NormalQueuePatient> normalQueuePatientList, int initialIndex) {
 
-        for (int i = initialIndex; i < normalQueuePatientList.size(); i++) {
-            normalQueuePatientRepository.updateNormalQueuePatientPosition(normalQueuePatientList.get(i).getId().getNormalQueue().getId(), normalQueuePatientList.get(i).getId().getPatient().getId(), i+1);
+        //Filter garante que somente os objetos modificados constaram na lista, evitando querys desnecessárias
+        //Map garante que cada objeto que satisfaça a condição seja incrementado
+        normalQueuePatientList.stream().filter(p -> p.getPosition() >= initialIndex).forEach(p -> p.setPosition(p.getPosition()+1));
+
+        for (int i = 0; i < normalQueuePatientList.size(); i++) {
+            NormalQueuePatient normalQueuePatient = normalQueuePatientList.get(i);
+            normalQueuePatient.toString();
+            normalQueuePatientRepository.updateNormalQueuePatientPosition(normalQueuePatient.getId().getNormalQueue().getId(), normalQueuePatient.getId().getPatient().getId(), normalQueuePatient.getPosition());
         }
     }
 

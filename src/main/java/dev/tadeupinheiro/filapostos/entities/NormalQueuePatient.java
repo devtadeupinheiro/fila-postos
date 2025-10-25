@@ -51,4 +51,12 @@ public class NormalQueuePatient {
     public int hashCode() {
         return Objects.hashCode(getId());
     }
+
+    @Override
+    public String toString() {
+        return "NormalQueuePatient{" +
+                "id=" + id.getPatient().getSusNumber() +
+                ", position=" + position +
+                '}';
+    }
 }
