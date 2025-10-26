@@ -3,6 +3,7 @@ package dev.tadeupinheiro.filapostos.services;
 import dev.tadeupinheiro.filapostos.dtos.NormalQueueRecordDto;
 import dev.tadeupinheiro.filapostos.entities.DoctorType;
 import dev.tadeupinheiro.filapostos.entities.NormalQueue;
+import dev.tadeupinheiro.filapostos.entities.NormalQueuePatient;
 import dev.tadeupinheiro.filapostos.repositories.DoctorTypeRepository;
 import dev.tadeupinheiro.filapostos.repositories.NormalQueueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -21,9 +23,10 @@ public class NormalQueueService {
 
     @Autowired
     private NormalQueueRepository normalQueueRepository;
-
     @Autowired
     private DoctorTypeRepository doctorTypeRepository;
+    @Autowired
+    private NormalQueuePatientService normalQueuePatientService;
 
     @Transactional
     public ResponseEntity<String> saveNormalQueue(NormalQueueRecordDto normalQueueRecordDto) {
@@ -47,6 +50,37 @@ public class NormalQueueService {
     @Transactional(readOnly = true)
     public List<NormalQueue> findAll() {
         return normalQueueRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<NormalQueue> findNormalQueueWithVacancies (){
+        List<NormalQueuePatient> normalQueuePatientList = normalQueuePatientService.findAllNormalQueuePatient();
+        List<NormalQueue> normalQueueList = findAll();
+        int quantityPatientByList = 0;
+        for (NormalQueue normalQueue : normalQueueList) {
+            for (NormalQueuePatient normalQueuePatient : normalQueuePatientList){
+                if (Objects.equals(normalQueue.getId(), normalQueuePatient.getId().getNormalQueue().getId())){
+                    quantityPatientByList++;
+                }
+            }
+            normalQueue.setQuantityVacancies(normalQueue.getQuantityVacancies()-quantityPatientByList);
+        }
+        return normalQueueList;
+    }
+
+    @Transactional(readOnly = true)
+    public NormalQueue findNormalQueueWithVacanciesById (Long normalQueueId){
+        List<NormalQueuePatient> normalQueuePatientList = normalQueuePatientService.findAllNormalQueuePatient();
+        var normalQueue = findNormalQueueById(normalQueueId);
+
+        int quantityPatientByList = 0;
+        for (NormalQueuePatient normalQueuePatient : normalQueuePatientList){
+            if (Objects.equals(normalQueueId, normalQueuePatient.getId().getNormalQueue().getId())){
+                quantityPatientByList++;
+            }
+        }
+        normalQueue.setQuantityVacancies(normalQueue.getQuantityVacancies()-quantityPatientByList);
+        return normalQueue;
     }
 
     @Transactional(readOnly = true)

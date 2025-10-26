@@ -26,10 +26,13 @@ public class NormalQueueController {
     }
 
     @GetMapping
-    //public List<NormalQueue> findAllNormalQueue() {
     public List<NormalQueueOutPutDTO> findAllNormalQueue (){
         return normalQueueService.findAll().stream().map(this::toDTO).collect(Collectors.toList());
-        //return normalQueueService.findAll();
+    }
+
+    @GetMapping("/withVacancies")
+    public List<NormalQueueOutPutDTO> findNormalQueueWithVacancies (){
+        return normalQueueService.findNormalQueueWithVacancies().stream().map(this::toDTO).collect(Collectors.toList());
     }
 
     @DeleteMapping("/{id}")
