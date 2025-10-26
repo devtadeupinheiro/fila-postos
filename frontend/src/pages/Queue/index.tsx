@@ -27,6 +27,7 @@ import {
   getQueues,
   Queue,
 } from "../../services/queueService";
+import { InputDate } from "../Patient/SelectQueue/styles";
 
 const QueuePage = () => {
   const [items, setItems] = useState<GetQueue[]>([]);
@@ -97,13 +98,21 @@ const QueuePage = () => {
         </Header>
 
         <Form onSubmit={onSubmit}>
-          <Input
+          {/* <Input
             id="queueDay"
             placeholder="Ex.: 2025-10-13"
             value={queueDay}
             onChange={(e) => setQueueDay(e.target.value)}
             disabled={submitting}
             label="Dia"
+          /> */}
+          <InputDate
+            id="queueDay"
+            type="date"
+            placeholder="Escolha uma data"
+            value={queueDay}
+            onChange={(e) => setQueueDay(e.target.value)}
+            required
           />
           <Input
             id="doctorTypeId"

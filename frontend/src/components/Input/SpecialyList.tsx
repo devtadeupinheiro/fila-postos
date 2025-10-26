@@ -6,8 +6,9 @@ import {
   Label,
   Select,
   InputDate,
-  SubmitButton
+  SubmitButton,
 } from "../../pages/Patient/SelectQueue/styles";
+import { getSpecialties, Specialty } from "../../services/specialyService";
 
 interface Especialidade {
   id: number;
@@ -15,22 +16,24 @@ interface Especialidade {
 }
 
 export default function SpecialyList() {
-  const [especialidades, setEspecialidades] = useState<Especialidade[]>([]);
-  const [especialidadeSelecionada, setEspecialidadeSelecionada] = useState<string>("");
+  const [especialidades, setEspecialidades] = useState<Specialty[]>([]);
+  const [especialidadeSelecionada, setEspecialidadeSelecionada] =
+    useState<string>("");
   const [data, setData] = useState<string>("");
   const [mensagem, setMensagem] = useState<string>("");
 
-  useEffect(() => {
-    async function fetchEspecialidades() {
-      try {
-        const response = await axios.get("http://localhost:8080/especialidades");
-        setEspecialidades(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar especialidades:", error);
-      }
-    }
+  async function loadList() {
+    try {
+      const data = await getSpecialties();
 
-    fetchEspecialidades();
+      setEspecialidades(data);
+    } catch (e) {
+      console.error("Erro ao buscar especialidades:", e);
+    }
+  }
+
+  useEffect(() => {
+    loadList();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -62,7 +65,7 @@ export default function SpecialyList() {
         <option value="">Selecione uma especialidade</option>
         {especialidades.map((esp) => (
           <option key={esp.id} value={esp.id}>
-            {esp.nome}
+            {esp.specialy}
           </option>
         ))}
       </Select>
