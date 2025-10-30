@@ -8,7 +8,14 @@ import {
   InputDate,
   SubmitButton,
 } from "../../pages/Patient/SelectQueue/styles";
-import { getSpecialties, Specialty } from "../../services/specialyService";
+import {
+  getQueue,
+  getSpecialties,
+  NormalQueue,
+  Specialty,
+} from "../../services/specialyService";
+import { api } from "../../services/api";
+import { Queue } from "../../services/queueService";
 
 interface Especialidade {
   id: number;
@@ -16,15 +23,16 @@ interface Especialidade {
 }
 
 export default function SpecialyList() {
-  const [especialidades, setEspecialidades] = useState<Specialty[]>([]);
+  const [especialidades, setEspecialidades] = useState<NormalQueue[]>([]);
   const [especialidadeSelecionada, setEspecialidadeSelecionada] =
     useState<string>("");
   const [data, setData] = useState<string>("");
+  const [susNumber, setSusNumber] = useState<string>("");
   const [mensagem, setMensagem] = useState<string>("");
 
   async function loadList() {
     try {
-      const data = await getSpecialties();
+      const data = await getQueue();
 
       setEspecialidades(data);
     } catch (e) {
@@ -40,9 +48,10 @@ export default function SpecialyList() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8080/filas/entrar", {
-        especialidadeId: especialidadeSelecionada,
-        data,
+      await api.post("/schedule-appointment", {
+        idQueue: especialidadeSelecionada,
+        // data,
+        patientSusNumber: susNumber,
       });
 
       setMensagem("Paciente entrou na fila com sucesso!");
@@ -76,6 +85,13 @@ export default function SpecialyList() {
         value={data}
         onChange={(e) => setData(e.target.value)}
         required
+      />
+      <InputDate
+        type="text"
+        value={susNumber}
+        onChange={(e) => setSusNumber(e.target.value)}
+        required
+        placeholder="15 dígitos"
       />
 
       <SubmitButton type="submit">Entrar na fila</SubmitButton>

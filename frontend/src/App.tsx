@@ -2,8 +2,8 @@ import React from "react";
 import SpecialtyPage from "./pages/Specialty";
 import Home from "./pages/Home"; // 👈 NOVO: importação da tela inicial
 import Patient from "./pages/Patient"; // 👈 Tela "Sou Paciente"
-import SelectQueue from "./pages/Patient/SelectQueue"; // 👈 Tela "Escolher Fila"
-import SpecialyForm from "./components/Input/SpecialyForm"; // 👈 Importa o formulário
+import SelectQueue from "./pages/Patient/SelectQueue";
+import RegisterPatient from "./pages/RegisterPatient";
 import Navbar from "./components/Navbar";
 
 import { Routes, Route } from "react-router-dom";
@@ -29,6 +29,7 @@ function App() {
         <Route path="/patient" element={<Patient />} />
         {/* 👈 NOVO: rota da tela "Sou Paciente" */}
         <Route path="/patient/select-queue" element={<SelectQueue />} />
+        <Route path="/patient/register" element={<RegisterPatient />} />
         {/* 👈 NOVO: rota da tela "Escolher Fila" */}
         {/* <Route path="/sobre" element={<About />} /> */}
         {/* <Route path="/contato" element={<Contact />} /> */}
