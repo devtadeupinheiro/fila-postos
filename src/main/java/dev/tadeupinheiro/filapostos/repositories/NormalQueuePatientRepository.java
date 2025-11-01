@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface NormalQueuePatientRepository extends JpaRepository<NormalQueuePatient, Long> {
 
@@ -13,4 +15,5 @@ public interface NormalQueuePatientRepository extends JpaRepository<NormalQueueP
     @Query(nativeQuery = true, value = "UPDATE tb_normal_queue_patient SET position = :newPosition WHERE normal_queue_id = :queueId AND patient_id = :patientId")
     void updateNormalQueuePatientPosition(Long queueId, Long patientId, Integer newPosition);
 
+    List<NormalQueuePatient> findNormalQueuePatientByIdPatientId(Long patientId);
 }

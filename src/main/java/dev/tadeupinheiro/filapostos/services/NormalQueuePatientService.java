@@ -1,7 +1,9 @@
 package dev.tadeupinheiro.filapostos.services;
 
 import dev.tadeupinheiro.filapostos.dtos.NormalQueuePatientRecordDTO;
+import dev.tadeupinheiro.filapostos.dtos.outputs.NormalQueuePatientOutPutDTO;
 import dev.tadeupinheiro.filapostos.entities.NormalQueuePatient;
+import dev.tadeupinheiro.filapostos.entities.Patient;
 import dev.tadeupinheiro.filapostos.repositories.NormalQueuePatientRepository;
 import dev.tadeupinheiro.filapostos.repositories.NormalQueueRepository;
 import dev.tadeupinheiro.filapostos.repositories.PatientRepository;
@@ -11,7 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class NormalQueuePatientService {
@@ -39,6 +45,26 @@ public class NormalQueuePatientService {
     @Transactional(readOnly = true)
     public List<NormalQueuePatient> findAllNormalQueuePatient (){
         return normalQueuePatientRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<NormalQueuePatientOutPutDTO> findQueueOfPatientById (String patientSusNumber){
+        Optional<Patient> patientOptional= patientRepository.findBySusNumber(patientSusNumber);
+        List<NormalQueuePatient> normalQueuePatientList = normalQueuePatientRepository.findNormalQueuePatientByIdPatientId(patientOptional.get().getId());
+        if (normalQueuePatientList.isEmpty()){
+            return null;
+        } else {
+            List<NormalQueuePatientOutPutDTO> normalQueuePatientOutPutDTOList = new ArrayList<>();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            for (NormalQueuePatient normalQueuePatient : normalQueuePatientList) {
+                var normalQueuePatientOutPutDTO = new NormalQueuePatientOutPutDTO();
+                normalQueuePatientOutPutDTO.setQueueDay(normalQueuePatient.getId().getNormalQueue().getDay().format(formatter));
+                normalQueuePatientOutPutDTO.setSpecialy(normalQueuePatient.getId().getNormalQueue().getDoctorType().getSpecialy());
+                normalQueuePatientOutPutDTO.setPosition(normalQueuePatient.getPosition());
+                normalQueuePatientOutPutDTOList.add(normalQueuePatientOutPutDTO);
+            }
+            return normalQueuePatientOutPutDTOList;
+        }
     }
 
     @Transactional
