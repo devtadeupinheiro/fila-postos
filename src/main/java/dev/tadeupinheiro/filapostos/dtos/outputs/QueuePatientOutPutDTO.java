@@ -1,14 +1,14 @@
 package dev.tadeupinheiro.filapostos.dtos.outputs;
 
-public class NormalQueuePatientOutPutDTO {
+public class QueuePatientOutPutDTO {
 
     private String queueDay;
     private String specialy;
     private Integer position;
 
-    public NormalQueuePatientOutPutDTO(){}
+    public QueuePatientOutPutDTO(){}
 
-    public NormalQueuePatientOutPutDTO(String queueDay, String specialy, Integer position) {
+    public QueuePatientOutPutDTO(String queueDay, String specialy, Integer position) {
         this.queueDay = queueDay;
         this.specialy = specialy;
         this.position = position;

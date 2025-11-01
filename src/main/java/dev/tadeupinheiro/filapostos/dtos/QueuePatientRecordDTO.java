@@ -2,7 +2,7 @@ package dev.tadeupinheiro.filapostos.dtos;
 
 import jakarta.validation.constraints.NotNull;
 
-public record NormalQueuePatientRecordDTO(
+public record QueuePatientRecordDTO(
         @NotNull Long normalQueueId,
         @NotNull Long patientId,
         @NotNull Integer position

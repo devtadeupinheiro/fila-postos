@@ -8,26 +8,26 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_normal_queue_patient")
-public class NormalQueuePatient {
+public class QueuePatient {
 
     @EmbeddedId
-    private NormalQueuePatientPK id = new NormalQueuePatientPK();
+    private QueuePatientPK id = new QueuePatientPK();
 
     private Integer position;
 
-    public NormalQueuePatient() {}
+    public QueuePatient() {}
 
-    public NormalQueuePatient(Integer position, NormalQueue normalQueue, Patient patient) {
+    public QueuePatient(Integer position, Queue queue, Patient patient) {
         this.position = position;
         id.setPatient(patient);
-        id.setNormalQueue(normalQueue);
+        id.setNormalQueue(queue);
     }
 
-    public NormalQueuePatientPK getId() {
+    public QueuePatientPK getId() {
         return id;
     }
 
-    public void setId(NormalQueuePatientPK id) {
+    public void setId(QueuePatientPK id) {
         this.id = id;
     }
 
@@ -43,7 +43,7 @@ public class NormalQueuePatient {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NormalQueuePatient that = (NormalQueuePatient) o;
+        QueuePatient that = (QueuePatient) o;
         return Objects.equals(getId(), that.getId());
     }
 
