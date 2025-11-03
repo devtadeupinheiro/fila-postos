@@ -20,9 +20,9 @@ export default function SelectQueue() {
         <>
           <TitleEscolherFila>Escolher Fila</TitleEscolherFila>
           <ButtonGroup>
-            <OptionButton onClick={() => navigate('/patient/consultar')}>
-              Consultar sua fila
-            </OptionButton>
+            <OptionButton onClick={() => navigate('/patient/queue-status')}>
+  Consultar sua fila
+</OptionButton>
             <OptionButton onClick={() => setEntrouNaFila(true)}>
               Escolher fila
             </OptionButton>
