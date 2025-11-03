@@ -1,10 +1,11 @@
 import React from "react";
 import SpecialtyPage from "./pages/Specialty";
-import Home from "./pages/Home"; // 👈 NOVO: importação da tela inicial
-import Patient from "./pages/Patient"; // 👈 Tela "Sou Paciente"
+import Home from "./pages/Home";
+import Patient from "./pages/Patient";
 import SelectQueue from "./pages/Patient/SelectQueue";
 import RegisterPatient from "./pages/RegisterPatient";
 import Navbar from "./components/Navbar";
+import QueueStatus from './pages/Patient/QueueStatus';
 
 import { Routes, Route } from "react-router-dom";
 import Admin from "./pages/Admin";
@@ -27,10 +28,9 @@ function App() {
         <Route path="/specialty" element={<SpecialtyPage />} />
         <Route path="/queue" element={<QueuePage />} />
         <Route path="/patient" element={<Patient />} />
-        {/* 👈 NOVO: rota da tela "Sou Paciente" */}
         <Route path="/patient/select-queue" element={<SelectQueue />} />
         <Route path="/patient/register" element={<RegisterPatient />} />
-        {/* 👈 NOVO: rota da tela "Escolher Fila" */}
+        <Route path="/patient/queue-status" element={<QueueStatus />} />
         {/* <Route path="/sobre" element={<About />} /> */}
         {/* <Route path="/contato" element={<Contact />} /> */}
         {/* Rota 404 (catch-all). Renderiza se nenhuma rota acima for encontrada */}
