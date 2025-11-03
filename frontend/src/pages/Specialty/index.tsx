@@ -23,7 +23,7 @@ import {
 import { Input } from "../../components/Input";
 
 const SpecialyPage = () => {
-  const [items, setItems] = useState<Specialty | null>(null);
+  const [items, setItems] = useState<Specialty[]>([]);
   const [specialty, setSpecialty] = useState("");
   const [loadingList, setLoadingList] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -34,7 +34,8 @@ const SpecialyPage = () => {
     setLoadingList(true);
     setErrorMsg("");
     try {
-      const data = await getSpecialties("dentista");
+      const data = await getSpecialties();
+
       setItems(data);
     } catch (e) {
       setErrorMsg("Não foi possível carregar as especialidades.");
@@ -70,6 +71,8 @@ const SpecialyPage = () => {
       setSubmitting(false);
     }
   }
+
+  console.log(items);
 
   return (
     <Page>
@@ -115,19 +118,19 @@ const SpecialyPage = () => {
           <Title>Especialidades cadastradas</Title>
         </Header>
 
-        {/* {loadingList ? (
+        {loadingList ? (
           <Empty>Carregando...</Empty>
         ) : items.length === 0 ? (
           <Empty>Nenhuma especialidade encontrada.</Empty>
         ) : (
           <List>
             {items.map((it) => (
-              <ListItem key={it.id ?? it.specialty}>
-                <Badge>{it.specialty ?? String(it)}</Badge>
+              <ListItem key={it.id ?? it.specialy}>
+                <Badge>{it.specialy ?? String(it)}</Badge>
               </ListItem>
             ))}
           </List>
-        )} */}
+        )}
       </Card>
     </Page>
   );
