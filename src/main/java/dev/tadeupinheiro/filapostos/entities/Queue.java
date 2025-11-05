@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_normal_queue")
-public class NormalQueue {
+public class Queue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +18,9 @@ public class NormalQueue {
     private DoctorType doctorType;
     private Integer quantityVacancies;
 
-    public NormalQueue() {}
+    public Queue() {}
 
-    public NormalQueue(LocalDate day, DoctorType doctorType, Integer quantityVacancies) {}
+    public Queue(LocalDate day, DoctorType doctorType, Integer quantityVacancies) {}
 
     public Long getId() {
         return id;

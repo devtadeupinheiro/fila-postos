@@ -5,14 +5,14 @@ import dev.tadeupinheiro.filapostos.entities.DoctorType;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class NormalQueueOutPutDTO {
+public class QueueOutPutDTO {
 
     private Long id;
     private String queueDay;
     private String specialy;
     private Integer quantityVacancies;
 
-    public NormalQueueOutPutDTO(Long id, LocalDate queueDay, DoctorType specialy, Integer quantityVacancies) {
+    public QueueOutPutDTO(Long id, LocalDate queueDay, DoctorType specialy, Integer quantityVacancies) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.id = id;
         this.queueDay = queueDay.format(formatter);

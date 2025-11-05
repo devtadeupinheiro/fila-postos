@@ -5,28 +5,28 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Embeddable
-public class NormalQueuePatientPK {
+public class QueuePatientPK {
 
     @ManyToOne
     @JoinColumn(name = "normal_queue_id")
-    private NormalQueue normalQueue;
+    private Queue queue;
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    public NormalQueuePatientPK(){}
+    public QueuePatientPK(){}
 
-    public NormalQueuePatientPK(NormalQueue normalQueue, Patient patient) {
-        this.normalQueue = normalQueue;
+    public QueuePatientPK(Queue queue, Patient patient) {
+        this.queue = queue;
         this.patient = patient;
     }
 
-    public NormalQueue getNormalQueue() {
-        return normalQueue;
+    public Queue getNormalQueue() {
+        return queue;
     }
 
-    public void setNormalQueue(NormalQueue normalQueue) {
-        this.normalQueue = normalQueue;
+    public void setNormalQueue(Queue queue) {
+        this.queue = queue;
     }
 
     public Patient getPatient() {
@@ -41,7 +41,7 @@ public class NormalQueuePatientPK {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NormalQueuePatientPK that = (NormalQueuePatientPK) o;
+        QueuePatientPK that = (QueuePatientPK) o;
         return Objects.equals(getNormalQueue(), that.getNormalQueue()) && Objects.equals(getPatient(), that.getPatient());
     }
 
