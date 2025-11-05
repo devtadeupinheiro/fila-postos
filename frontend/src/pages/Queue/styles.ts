@@ -1,109 +1,58 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Page = styled.div`
-  max-width: 960px;
-  margin: 40px auto;
-  padding: 0 16px;
-  display: grid;
-  gap: 24px;
+export const Container = styled.div`
+  padding: 2rem;
 `;
 
-export const Card = styled.section`
-  background: #fff;
-  border: 1px solid #e9e9ef;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+export const Title = styled.h1`
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #00796b;
 `;
 
-export const Header = styled.header`
-  margin-bottom: 14px;
+export const Section = styled.section`
+  margin-bottom: 2rem;
 `;
 
-export const Title = styled.h2`
-  margin: 0 0 4px;
-  font-size: 20px;
-  line-height: 1.2;
+export const QueueCard = styled.div`
+  border: 2px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: #007bff;
+  }
 `;
 
-export const Subtitle = styled.p`
-  margin: 0;
-  color: #6b7280;
-  font-size: 14px;
-`;
-
-export const Form = styled.form`
-  display: grid;
-  gap: 16px;
-`;
-
-export const Actions = styled.div`
-  display: flex;
-  gap: 12px;
+export const Input = styled.input`
+  padding: 0.6rem;
+  margin-top: 1rem;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
 `;
 
 export const Button = styled.button`
-  height: 42px;
-  padding: 0 16px;
-  background: #007bff;
-  color: #fff;
-  border: 0;
-  border-radius: 10px;
-  font-weight: 600;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  margin-top: 1rem;
   cursor: pointer;
-  transition: transform 0.06s ease, filter 0.15s ease;
+  font-size: 1rem;
 
   &:hover {
-    background: #0056b3;
-  }
-  &:active {
-    transform: translateY(1px);
-  }
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+    background-color: #0056b3;
   }
 `;
 
-export const Alert = styled.div<{ $variant: string }>`
-  border-radius: 10px;
-  padding: 12px 14px;
-  font-size: 14px;
-  ${({ $variant }) =>
-    $variant === "error"
-      ? `background:#fef2f2;color:#991b1b;border:1px solid #fecaca;`
-      : `background:#ecfeff;color:#075985;border:1px solid #a5f3fc;`}
-`;
-
-export const Empty = styled.p`
-  margin: 8px 0 0;
-  color: #6b7280;
-`;
-
-export const List = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  list-style: none;
-  margin: 8px 0 0;
-  padding: 0px;
-  display: grid;
-  /* grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); */
-  gap: 10px;
-  /* background-color: #2f5ecaff; */
-`;
-
-export const ListItem = styled.li`
-  display: flex;
-`;
-
-export const Badge = styled.span`
-  padding: 8px 10px;
-  background: #f3f4f6;
-  border: 1px solid #b7b7b7ff;
-  color: #000000ff;
-  font-size: 14px;
-  border-radius: 999px;
-  width: 100%;
-  text-align: center;
+export const Message = styled.p`
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #007bff;
 `;

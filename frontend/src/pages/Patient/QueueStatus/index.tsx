@@ -1,52 +1,72 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Container, Title, InfoBox, ErrorMessage, OptionButton } from './styles';
+import {
+  Container,
+  Title,
+  Input,
+  InfoBox,
+  ErrorMessage,
+  OptionButton,
+  QueueCard
+} from './styles';
 
-interface QueueResponse {
-  position?: number;
-  message?: string;
+interface QueueItem {
+  specialty: string;
+  queueDay: string;
+  position: number;
 }
 
 export default function QueueStatus() {
-  const [position, setPosition] = useState<number | null>(null);
+  const [susNumber, setSusNumber] = useState('');
+  const [queues, setQueues] = useState<QueueItem[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchQueueStatus = async () => {
-      try {
-        const response = await axios.post<QueueResponse>('/schedule-appointment', {
-          idQueue: 1, // ← substitua com o ID real da fila
-          patientSusNumber: '123456789012345' // ← substitua com o SUS real
-        });
+  const fetchQueueStatus = async () => {
+    if (!susNumber.trim()) {
+      setError('Digite o número do SUS.');
+      return;
+    }
 
-        if (response.status === 201 && response.data.position !== undefined) {
-          setPosition(response.data.position);
-        } else {
-          setError(response.data.message || 'Fila cheia ou paciente não entrou.');
-        }
-      } catch (err) {
-        setError('Erro ao consultar a fila.');
-      }
-    };
+    setLoading(true);
+    setError(null);
+    setQueues([]);
 
-    fetchQueueStatus();
-  }, []);
+    try {
+      const response = await axios.get(`/schedule-appointment/${susNumber}`);
+      setQueues(response.data);
+    } catch {
+      setError('Erro ao consultar a fila.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Container>
       <Title>Status da sua Fila</Title>
 
-      {error ? (
-        <ErrorMessage>{error}</ErrorMessage>
-      ) : (
+      <Input
+        placeholder="Digite seu número do SUS"
+        value={susNumber}
+        onChange={(e) => setSusNumber(e.target.value)}
+      />
+      <OptionButton onClick={fetchQueueStatus}>Consultar</OptionButton>
+
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {loading && <InfoBox>⏳ Consultando posição...</InfoBox>}
+
+      {queues.length > 0 && (
         <InfoBox>
-          {position !== null ? (
-            <p>Sua posição atual na fila é: <strong>{position}</strong></p>
-          ) : (
-            <p>⏳ Consultando posição...</p>
-          )}
+          {queues.map((q, index) => (
+            <QueueCard key={index}>
+              <p><strong>Especialidade:</strong> {q.specialty}</p>
+              <p><strong>Data:</strong> {q.queueDay}</p>
+              <p><strong>Posição:</strong> {q.position}</p>
+            </QueueCard>
+          ))}
         </InfoBox>
       )}
 
