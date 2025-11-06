@@ -86,7 +86,7 @@ const SpecialyPage = () => {
 
         <Form onSubmit={onSubmit}>
           <Input
-            id="specialty"
+            id="specialy"
             placeholder="Ex.: Dentista"
             value={specialty}
             onChange={(e) => setSpecialty(e.target.value)}

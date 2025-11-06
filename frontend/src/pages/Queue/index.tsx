@@ -64,14 +64,14 @@ export default function Queue() {
             key={q.id}
             onClick={() => {
               setSelectedQueueId(q.id ?? null);
-              setSelectedQueueName(q.specialty);
+              setSelectedQueueName(q.specialy);
               setMessage('');
             }}
             style={{
               borderColor: selectedQueueId === q.id ? '#007bff' : '#ccc'
             }}
           >
-            <p><strong>Especialidade:</strong> {q.specialty}</p>
+            <p><strong>Especialidade:</strong> {q.specialy}</p>
             <p><strong>Data:</strong> {q.queueDay}</p>
             <p><strong>Vagas:</strong> {q.quantityVacancies}</p>
           </QueueCard>

@@ -9,7 +9,7 @@ export type Queue = {
 
 export type GetQueue = {
   id?: number;
-  specialty: string; // Corrigido de "specialy"
+  specialy: string; // Corrigido de "specialy"
   queueDay: string;
   quantityVacancies: number;
 };

@@ -10,9 +10,10 @@ import {
   OptionButton,
   QueueCard
 } from './styles';
+import { api } from '../../../services/api';
 
 interface QueueItem {
-  specialty: string;
+  specialy: string;
   queueDay: string;
   position: number;
 }
@@ -35,7 +36,7 @@ export default function QueueStatus() {
     setQueues([]);
 
     try {
-      const response = await axios.get(`/schedule-appointment/${susNumber}`);
+      const response = await api.get(`/schedule-appointment/${susNumber}`);
       setQueues(response.data);
     } catch {
       setError('Erro ao consultar a fila.');
@@ -62,7 +63,7 @@ export default function QueueStatus() {
         <InfoBox>
           {queues.map((q, index) => (
             <QueueCard key={index}>
-              <p><strong>Especialidade:</strong> {q.specialty}</p>
+              <p><strong>Especialidade:</strong> {q.specialy}</p>
               <p><strong>Data:</strong> {q.queueDay}</p>
               <p><strong>Posição:</strong> {q.position}</p>
             </QueueCard>
